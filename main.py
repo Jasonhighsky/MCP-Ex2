@@ -8,20 +8,20 @@ import json
 
 load_dotenv()
 
-mcp = FastMCP("tech_news")
+mcp = FastMCP("daum_news")
 USER_AGENT = "new-app/1.0"
 NEWS_SITES = {
-    "arstechnica" : "https://arstechnica.com"
+    '다음뉴스' : "https://news.daum.net/"
 }
 
 async def fetch_news(url: str) :
-    """It pulls and summarizes the latest news from the specified news site."""
+    """다음뉴스 사이트에서 최신 뉴스를 가져와서 개략적으로 소개합니다."""
     async with httpx.AsyncClient() as client :
         try :
             response = await client.get(url, timeout=30.0)
             soup = BeautifulSoup(response.text, "html.parser")
             paragraphs = soup.find_all("p")
-            text = " ".join([p.get_text() for p in paragraphs[:5]])
+            text = " ".join([p.get_text() for p in paragraphs[:10]])
             return text
         except httpx.TimeoutException:
             return "Timeout error"
@@ -29,13 +29,13 @@ async def fetch_news(url: str) :
 @mcp.tool()
 async def get_tech_news(source: str) :
     """
-    Fetches the latest news form specific tech news source.
+    뉴스를 가져와 정리해줌.
     
     Args:
-    source: Name of the news source (ex: "arstechnica" or "techcrunch")
+    소스: 다음뉴스
     
     Returns:
-    A brief sumarry of the latest news.
+    최신 뉴스를 개략적으로 정리 해줌.
     """
     if source not in NEWS_SITES:
         raise ValueError(f"Source {source} is not supported")
