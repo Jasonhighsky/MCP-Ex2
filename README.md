@@ -1,6 +1,8 @@
 # MCP (Model Context Protocls) Examples
 
 ## 환경설정 with Visual Studio Code & Python
+- reference: https://medium.com/data-science-collective/model-context-protocol-mcp-an-end-to-end-tutorial-with-hands-on-project-c6b9ffee03d7
+
 
 ### Package Manger install
 - Pip 보다 uv package manager 사용 권장
@@ -93,7 +95,7 @@
 
 ### HOST 설정 in Claude Desktop
 - Claude App > Settings (Cmd + ,) > Edit Config
-  ![alt text](image-1.png)
+- ![alt text](image-1.png)
 - claude_desktop_config.json 이 있는 Finder (Exprlorer) 폴더 오픈됨
 - 이 Config file 설정
 
